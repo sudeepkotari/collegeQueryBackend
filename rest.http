@@ -1,22 +1,22 @@
-GET http://localhost:3000
+GET http://localhost:3001
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTI5OTYxNjIsImV4cCI6MTU5Mjk5NjE3NywiYXVkIjoiNWVlYTBlOTlkMTU3ZjYzZjNlMzYxYjQxIiwiaXNzIjoicGlja3VycGFnZS5jb20ifQ.fsED23a_2dINM1saPjmHkc_gVrsuptb1oSNh0GR-03M
 
 ###Login Route
-POST http://localhost:3000/auth/login
+POST https://college-query.herokuapp.com/auth/login
 Content-Type: application/json
 
 {
-  "email": "jhondoe@gmail.com",
+  "email": "jhond1@gmail.com",
   "password": "1234"
 }
 
 
 ###Register Route
-POST http://localhost:3000/auth/register
+POST http://localhost:3001/auth/register
 Content-Type: application/json
 
 {
-  "email": "jhondoe@gmail.com",
+  "email": "jhond5@gmail.com",
   "password": "1234"
 }
 

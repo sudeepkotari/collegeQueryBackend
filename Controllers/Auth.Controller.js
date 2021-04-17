@@ -24,7 +24,7 @@ module.exports = {
 
       res.send({ accessToken, refreshToken })
     } catch (error) {
-      if (error.isJoi === true) error.status = 422
+      if (error.isJoi === true) error.status = 422   // 422 Unprocessable Entity
       next(error)
     }
   },
