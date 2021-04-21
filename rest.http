@@ -12,11 +12,11 @@ Content-Type: application/json
 
 
 ###Register Route
-POST https://college-query.herokuapp.com/auth/register
+POST http://localhost:3001/auth/register
 Content-Type: application/json
 
 {
-  "email": "jhon9@gmail.com",
+  "email": "kotariSudeep@gmail.com",
   "password": "1234"
 }
 
@@ -29,9 +29,9 @@ Content-Type: application/json
 }
 
 ###Logout Route
-DELETE http://localhost:3000/auth/logout
+DELETE http://localhost:3001/auth/logout
 Content-Type: application/json
 
 {
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTI1ODcyOTIsImV4cCI6MTYyNDE0NDg5MiwiYXVkIjoiNWVlYTBlOTlkMTU3ZjYzZjNlMzYxYjQxIiwiaXNzIjoicGlja3VycGFnZS5jb20ifQ.OGfV-n2fsuV2D5nvUGEzU7KLtkbIy1Pmm4DwxB75MKU"
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTg2NDA0NTksImV4cCI6MTY1MDE5ODA1OSwiYXVkIjoiNjA3YTc3Y2RlNDFmYTEwYmU1ZTY4ZWE4IiwiaXNzIjoicGlja3VycGFnZS5jb20ifQ.5-kiPGk3LdFVkqXTzOuU_wbPiKaf7jBUune4v4H12yI"
 }
