@@ -6,7 +6,7 @@ POST http://localhost:3001/auth/login
 Content-Type: application/json
 
 {
-  "email": "jhond9@gmail.com",
+  "email": "kotariSudeep@gmail.com",
   "password": "1234"
 }
 
@@ -16,7 +16,15 @@ POST http://localhost:3001/auth/register
 Content-Type: application/json
 
 {
-  "email": "kotariSudeep@gmail.com",
+  "emailVerificationToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtvdGFyaXN1ZGVlcEBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQiLCJpYXQiOjE2MTkyNTgzMDgsImV4cCI6MTYxOTI1OTIwOCwiYXVkIjoia290YXJpc3VkZWVwQGdtYWlsLmNvbSIsImlzcyI6ImNvbGxlZ2VxdWVyeS5jb20ifQ.9jAGBmlKR57_91wPOWVTUN9fG296AfXb4rTnRjK5DJ0"
+}
+
+###
+POST http://localhost:3001/auth/verify-email
+Content-Type: application/json
+
+{
+  "email": "kotarisudeep@gmail.com",
   "password": "1234"
 }
 
@@ -29,9 +37,9 @@ Content-Type: application/json
 }
 
 ###Logout Route
-DELETE http://localhost:3001/auth/logout
+DELETE https://college-query.herokuapp.com/auth/logout
 Content-Type: application/json
 
 {
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTg2NDA0NTksImV4cCI6MTY1MDE5ODA1OSwiYXVkIjoiNjA3YTc3Y2RlNDFmYTEwYmU1ZTY4ZWE4IiwiaXNzIjoicGlja3VycGFnZS5jb20ifQ.5-kiPGk3LdFVkqXTzOuU_wbPiKaf7jBUune4v4H12yI"
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTkwNjYyMDQsImV4cCI6MTY1MDYyMzgwNCwiYXVkIjoiNjA3ZmQ0MDdjNThmODIwMDIyMmUxYWIzIiwiaXNzIjoicGlja3VycGFnZS5jb20ifQ.7r4VSRQz8Q2lYbsijMACSveKfezFjtI7zovswQ2zBsY"
 }

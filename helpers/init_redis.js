@@ -3,14 +3,14 @@ const redis = require('redis')
 const client = redis.createClient({
   host: process.env.REDIS_URL,
   port: process.env.REDIS_PORT,
-  password: process.env.REDIS_PASSWORD
+  //password: process.env.REDIS_PASSWORD
   })
 
 /*
   default redis port number and localhost
   {
-  port: 6379,
-  host: '127.0.0.1',
+  port: 16877,
+  host: 'redis-16877.c263.us-east-1-2.ec2.cloud.redislabs.com',
   }
   process.env.REDIS_URL is specifically for heroku server deployment
 */

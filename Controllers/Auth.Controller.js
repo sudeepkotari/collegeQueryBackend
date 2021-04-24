@@ -5,13 +5,41 @@ const {
   signAccessToken,
   signRefreshToken,
   verifyRefreshToken,
+  signEmailVerificationToken,
+  verifyEmailVerificationToken,
 } = require('../helpers/jwt_helper')
 const client = require('../helpers/init_redis')
+const { sendMail } = require('../helpers/mail_sender')
+const { token } = require('morgan')
 
 module.exports = {
-  register: async (req, res, next) => {
+  verifyEmail: async (req, res, next) => {
     try {
       const result = await authSchema.validateAsync(req.body)
+
+      const doesExist = await User.findOne({ email: result.email })
+      if (doesExist)
+        throw createError.Conflict(`${result.email} is already been registered`)
+
+      const emailVerificationToken = await signEmailVerificationToken(result.email, result.password);
+      const message = await sendMail(result.email, emailVerificationToken)
+      
+      res.send({message})
+    } catch (error) {
+      if (error.isJoi === true) error.status = 422   // 422 Unprocessable Entity
+      next(error)
+    }
+  },
+
+  register: async (req, res, next) => {
+    try {
+      const { emailVerificationToken } = req.body;
+      let result;
+      if(emailVerificationToken){
+        result = await verifyEmailVerificationToken(emailVerificationToken);
+      }else{
+        throw createError.Unauthorized();
+      }
 
       const doesExist = await User.findOne({ email: result.email })
       if (doesExist)
@@ -80,5 +108,5 @@ module.exports = {
     } catch (error) {
       next(error)
     }
-  },
+  }
 }

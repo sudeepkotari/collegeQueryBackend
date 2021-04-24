@@ -3,13 +3,47 @@ const createError = require('http-errors')
 const client = require('./init_redis')
 
 module.exports = {
+  signEmailVerificationToken: (email,password) => {
+    return new Promise((resolve, reject) => {
+      const payload = {
+        email,
+        password
+      }
+      const secret = process.env.VERIFICATION_TOKEN_SECRET
+      const options = {
+        expiresIn: '15m',
+        issuer: 'collegequery.com',
+        audience: email,
+      }
+      JWT.sign(payload, secret, options, (err, token) => {
+        if (err) {
+          console.log(err.message)
+          reject(createError.InternalServerError())
+          return
+        }
+        resolve(token)
+      })
+    })
+  },
+  verifyEmailVerificationToken: (emailVerificationToken) => {
+    return new Promise((resolve, reject) => {
+      JWT.verify(
+        emailVerificationToken,
+        process.env.VERIFICATION_TOKEN_SECRET,
+        (err, payload) => {
+          if (err) return reject(createError.Unauthorized())
+          resolve(payload)
+        }
+      )
+    })
+  },
   signAccessToken: (userId) => {
     return new Promise((resolve, reject) => {
       const payload = {}
       const secret = process.env.ACCESS_TOKEN_SECRET
       const options = {
         expiresIn: '1h',
-        issuer: 'pickurpage.com',
+        issuer: 'collegequery.com',
         audience: userId,
       }
       JWT.sign(payload, secret, options, (err, token) => {
@@ -43,7 +77,7 @@ module.exports = {
       const secret = process.env.REFRESH_TOKEN_SECRET
       const options = {
         expiresIn: '1y',
-        issuer: 'pickurpage.com',
+        issuer: 'collegequery.com',
         audience: userId,
       }
       JWT.sign(payload, secret, options, (err, token) => {
