@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3001/auth/verify-email
+POST https://college-query.herokuapp.com/auth/verify-email
 Content-Type: application/json
 
 {
@@ -44,3 +44,7 @@ Content-Type: application/json
 {
   "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTk4NTc4OTAsImV4cCI6MTY1MTQxNTQ5MCwiYXVkIjoiNjA4ZDExMjQxNDc3NDEwY2MyYThhZDUwIiwiaXNzIjoiY29sbGVnZXF1ZXJ5LmNvbSJ9.TMuZvuF5buda6N74IRNFEYL4ChlnnbCkfAXKu402e1Y"
 }
+
+
+###
+https://college-query.web.app

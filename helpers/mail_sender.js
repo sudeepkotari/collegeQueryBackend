@@ -41,7 +41,7 @@ module.exports = {
                         <body>
                         <h1 style="text-align:center;">verify your email address</h1>
                         <div style="text-align:center;">
-                        <a href='http://localhost:3000/verify-mail/${token}'>
+                        <a href='https://college-query.web.app/verify-mail/${token}'>
                             <button class="btn">
                                 Confirm email
                             </button>
