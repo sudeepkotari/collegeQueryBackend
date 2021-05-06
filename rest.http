@@ -1,13 +1,13 @@
 GET http://localhost:3001
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTI5OTYxNjIsImV4cCI6MTU5Mjk5NjE3NywiYXVkIjoiNWVlYTBlOTlkMTU3ZjYzZjNlMzYxYjQxIiwiaXNzIjoicGlja3VycGFnZS5jb20ifQ.fsED23a_2dINM1saPjmHkc_gVrsuptb1oSNh0GR-03M
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjAwMDk4NDMsImV4cCI6MTYyMDAwOTg3MywiYXVkIjoiNjA4ZjYyYWYzYWUxMmQxYTNjOTliYTFhIiwiaXNzIjoiY29sbGVnZXF1ZXJ5LmNvbSJ9.8jA0eR7y0lW6drSzFwM5TVDxyFCr_ts8TJrTchgBqXk
 
 ###Login Route
 POST http://localhost:3001/auth/login
 Content-Type: application/json
 
 {
-  "email": "kotariSudeep@gmail.com",
-  "password": "1234"
+  "email": "sudeepkotari@gmail.com",
+  "password": "12345679"
 }
 
 
@@ -16,7 +16,7 @@ POST http://localhost:3001/auth/register
 Content-Type: application/json
 
 {
-  "emailVerificationToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtvdGFyaXN1ZGVlcEBnbWFpbC5jb20iLCJwYXNzd29yZCI6IjEyMzQiLCJpYXQiOjE2MTkyNTgzMDgsImV4cCI6MTYxOTI1OTIwOCwiYXVkIjoia290YXJpc3VkZWVwQGdtYWlsLmNvbSIsImlzcyI6ImNvbGxlZ2VxdWVyeS5jb20ifQ.9jAGBmlKR57_91wPOWVTUN9fG296AfXb4rTnRjK5DJ0"
+  "emailVerificationToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic3VkZWVwIiwiZW1haWwiOiJzdWRlZXBrb3RhcmlAZ21haWwuY29tIiwicGFzc3dvcmQiOiIxMjM0NTY3OSIsImlhdCI6MTYyMDAwOTUyOCwiZXhwIjoxNjIwMDEwNDI4LCJpc3MiOiJjb2xsZWdlcXVlcnkuY29tIn0.eepv5VDQwcyjMdbrhPuEQHZLT8fGasXehm4JJIczZLw"
 }
 
 ###
@@ -24,16 +24,17 @@ POST http://localhost:3001/auth/verify-email
 Content-Type: application/json
 
 {
-  "email": "kotarisudeep@gmail.com",
-  "password": "1234"
+  "name":"sudeep",
+  "email": "sudeepkotari@gmail.com",
+  "password": "12345679"
 }
 
 ###Refresh token Route
-POST http://localhost:3000/auth/refresh-token
+POST http://localhost:3001/auth/refresh-token
 Content-Type: application/json
 
 {
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTI5OTYxMzcsImV4cCI6MTYyNDU1MzczNywiYXVkIjoiNWVlYTBlOTlkMTU3ZjYzZjNlMzYxYjQxIiwiaXNzIjoicGlja3VycGFnZS5jb20ifQ.9kFX7LEzyh6eopqF_TGZQRwYqrIPUUdN441ekfKxu7Q"
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjAxMDcxNDAsImV4cCI6MTYyMDEwNzE3MCwiYXVkIjoiNjA5MGRkMTI0MzgxNzQxMjc0NzFkOGYwIiwiaXNzIjoiY29sbGVnZXF1ZXJ5LmNvbSJ9.lgvSPLYKjMSuzsE9Pc66DTRs7A5JqYDDmVrdtWVYTDQ"
 }
 
 ###Logout Route
@@ -41,5 +42,5 @@ DELETE https://college-query.herokuapp.com/auth/logout
 Content-Type: application/json
 
 {
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTkwNjYyMDQsImV4cCI6MTY1MDYyMzgwNCwiYXVkIjoiNjA3ZmQ0MDdjNThmODIwMDIyMmUxYWIzIiwiaXNzIjoicGlja3VycGFnZS5jb20ifQ.7r4VSRQz8Q2lYbsijMACSveKfezFjtI7zovswQ2zBsY"
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTk4NTc4OTAsImV4cCI6MTY1MTQxNTQ5MCwiYXVkIjoiNjA4ZDExMjQxNDc3NDEwY2MyYThhZDUwIiwiaXNzIjoiY29sbGVnZXF1ZXJ5LmNvbSJ9.TMuZvuF5buda6N74IRNFEYL4ChlnnbCkfAXKu402e1Y"
 }

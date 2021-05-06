@@ -20,8 +20,35 @@ module.exports = {
                 to: user,
                 subject: 'Hello from College-Query',
                 text: 'Hello from College-Query',
-                html: `<h1>confirm your email address</h1>
-                <p>localhost:3000/${token}`
+                html: 
+                `<!DOCTYPEhtml>
+                <htm>
+                        <head>
+                        <style type="text/css">
+                            .btn {
+                                background-color:#3182CE;
+                                cursor:pointer;
+                                border-radius: 10px;
+                                height:50px;
+                                width:150px;
+                                color:#fff;
+                                border:none;
+                                font-size: 20px;
+                                font-weight: bold;
+                            }
+                        </style>
+                        </head>
+                        <body>
+                        <h1 style="text-align:center;">verify your email address</h1>
+                        <div style="text-align:center;">
+                        <a href='http://localhost:3000/verify-mail/${token}'>
+                            <button class="btn">
+                                Confirm email
+                            </button>
+                        </a>
+                        </div>
+                        </body>
+                        </html>`
             };
               
             mailTransporter.sendMail(mailDetails, function(err, data) {
@@ -30,7 +57,7 @@ module.exports = {
                     reject(createError.InternalServerError())
                     return
                 } else {
-                    const message = 'Email sent successfully'
+                    const message = 'A verification link has been sent to your email account'
                     resolve(message)
                 }
             });

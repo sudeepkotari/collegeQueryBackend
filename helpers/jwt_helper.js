@@ -3,17 +3,17 @@ const createError = require('http-errors')
 const client = require('./init_redis')
 
 module.exports = {
-  signEmailVerificationToken: (email,password) => {
+  signEmailVerificationToken: (name,email,password) => {
     return new Promise((resolve, reject) => {
       const payload = {
+        name,
         email,
         password
       }
       const secret = process.env.VERIFICATION_TOKEN_SECRET
       const options = {
         expiresIn: '15m',
-        issuer: 'collegequery.com',
-        audience: email,
+        issuer: 'collegequery.com'
       }
       JWT.sign(payload, secret, options, (err, token) => {
         if (err) {

@@ -1,6 +1,6 @@
 const createError = require('http-errors')
 const User = require('../Models/User.model')
-const { authSchema } = require('../helpers/validation_schema')
+const { authSchema, loginSchema } = require('../helpers/validation_schema')
 const {
   signAccessToken,
   signRefreshToken,
@@ -10,7 +10,6 @@ const {
 } = require('../helpers/jwt_helper')
 const client = require('../helpers/init_redis')
 const { sendMail } = require('../helpers/mail_sender')
-const { token } = require('morgan')
 
 module.exports = {
   verifyEmail: async (req, res, next) => {
@@ -21,7 +20,7 @@ module.exports = {
       if (doesExist)
         throw createError.Conflict(`${result.email} is already been registered`)
 
-      const emailVerificationToken = await signEmailVerificationToken(result.email, result.password);
+      const emailVerificationToken = await signEmailVerificationToken(result.name, result.email, result.password);
       const message = await sendMail(result.email, emailVerificationToken)
       
       res.send({message})
@@ -59,13 +58,14 @@ module.exports = {
 
   login: async (req, res, next) => {
     try {
-      const result = await authSchema.validateAsync(req.body)
+      const result = await loginSchema.validateAsync(req.body)
+
       const user = await User.findOne({ email: result.email })
       if (!user) throw createError.NotFound('User not registered')
 
       const isMatch = await user.isValidPassword(result.password)
       if (!isMatch)
-        throw createError.Unauthorized('Username/password not valid')
+        throw createError.Unauthorized('Username or password not valid')
 
       const accessToken = await signAccessToken(user.id)
       const refreshToken = await signRefreshToken(user.id)
@@ -73,7 +73,7 @@ module.exports = {
       res.send({ accessToken, refreshToken })
     } catch (error) {
       if (error.isJoi === true)
-        return next(createError.BadRequest('Invalid Username/Password'))
+        return next(createError.BadRequest('Invalid Username or Password'))
       next(error)
     }
   },
@@ -103,7 +103,7 @@ module.exports = {
           throw createError.InternalServerError()
         }
         console.log(val)
-        res.sendStatus(204) // server has successfully fulfilled the request and that there is no content to send
+        res.sendStatus(204) //server has successfully fulfilled the request and that there is no content to send
       })
     } catch (error) {
       next(error)
