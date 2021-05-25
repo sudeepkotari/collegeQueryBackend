@@ -3,10 +3,13 @@ const morgan = require('morgan')
 const cors = require('cors')
 const createError = require('http-errors')
 require('dotenv').config()
+const { ApolloServer } = require('apollo-server-express');
+
 require('./helpers/init_mongodb')
 const { verifyAccessToken } = require('./helpers/jwt_helper')
 require('./helpers/init_redis')
-
+const typeDefs = require('./typeDefs');
+const resolvers = require('./resolvers');
 const AuthRoute = require('./Routes/Auth.route')
 
 const app = express()
@@ -14,6 +17,13 @@ app.use(cors())
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers
+})
+apolloServer.start();
+apolloServer.applyMiddleware({app:app})
 
 app.get('/', verifyAccessToken, async (req, res, next) => {
   res.send({"success": true })

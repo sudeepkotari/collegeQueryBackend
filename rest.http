@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
   "email": "sudeepkotari@gmail.com",
-  "password": "12345679"
+  "password": "sudeepK@97"
 }
 
 
@@ -38,11 +38,11 @@ Content-Type: application/json
 }
 
 ###Logout Route
-DELETE https://college-query.herokuapp.com/auth/logout
+DELETE http://localhost:3001/auth/logout
 Content-Type: application/json
 
 {
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTk4NTc4OTAsImV4cCI6MTY1MTQxNTQ5MCwiYXVkIjoiNjA4ZDExMjQxNDc3NDEwY2MyYThhZDUwIiwiaXNzIjoiY29sbGVnZXF1ZXJ5LmNvbSJ9.TMuZvuF5buda6N74IRNFEYL4ChlnnbCkfAXKu402e1Y"
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjEzOTQwNDgsImV4cCI6MTY1Mjk1MTY0OCwiYXVkIjoiNjA5NjNiNjlkY2U3OGEwMDIyYzEwZjgxIiwiaXNzIjoiY29sbGVnZXF1ZXJ5LmNvbSJ9.1C0t_v3ow0P0FJZvkNeOPsIzt5Lp0E5cLBuF3pDOPSQ"
 }
 
 
