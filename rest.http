@@ -24,8 +24,8 @@ POST https://college-query.herokuapp.com/auth/verify-email
 Content-Type: application/json
 
 {
-  "name":"sudeep",
-  "email": "sudeepkotari@gmail.com",
+  "name":"kotari",
+  "email": "kotarisudeep@gmail.com",
   "password": "12345679"
 }
 

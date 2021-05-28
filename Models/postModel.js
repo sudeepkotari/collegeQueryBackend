@@ -1,13 +1,26 @@
 const mongoose = require('mongoose');
 
 const PostSchema = new mongoose.Schema({
-    title:{
-        type:String,
-        required:true
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"user"
     },
-    description:{
-        type:String
-    }
+    question:{
+        type: String,
+        required: true
+    },
+    answers:[{
+        _id : false,
+        answer:{
+            type:String
+        },
+        user:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref:'user'
+        }
+    }],
+},{
+    timestamps: true
 });
 
 const post = mongoose.model('post',PostSchema);
