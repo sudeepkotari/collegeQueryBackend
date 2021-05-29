@@ -24,11 +24,24 @@ const resolvers = {
             .populate('user','name');
         },
 
-        getSearchResult: async () => {
-            return await Post.find()
-            .sort({updatedAt: -1})
-            .populate('user','name')
-            .populate('answers.user')
+        getSearchResult: async (parent, { question }, context, info) => {
+            const searchResult = await Post.aggregate([
+                {
+                    "$search": {
+                        "autocomplete": {
+                            "query": `${question}`,
+                            "path": "question",
+                            "fuzzy": {
+                                "maxEdits": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    $limit: 10
+                }
+            ])
+            return searchResult;
         }
     },
     Mutation:{

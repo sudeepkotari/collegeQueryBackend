@@ -39,7 +39,7 @@ type Query {
     getPost(id: ID):Post
     getUsers:[User]
     getQuestions:[Question]
-    getSearchResult:[Post]
+    getSearchResult(question: String):[Post]
 }
 
 type Mutation {
