@@ -20,13 +20,15 @@ Content-Type: application/json
 }
 
 ###
-POST https://college-query.herokuapp.com/auth/verify-email
+POST http://localhost:3001/auth/verify-email
 Content-Type: application/json
 
 {
   "name":"kotari",
   "email": "kotarisudeep@gmail.com",
-  "password": "12345679"
+  "password": "12345679",
+  "about": " ",
+  "profileUrl": " "
 }
 
 ###Refresh token Route

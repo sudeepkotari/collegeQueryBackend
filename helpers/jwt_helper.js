@@ -3,12 +3,14 @@ const createError = require('http-errors')
 const client = require('./init_redis')
 
 module.exports = {
-  signEmailVerificationToken: (name,email,password) => {
+  signEmailVerificationToken: (name, email, password, about, profileUrl) => {
     return new Promise((resolve, reject) => {
       const payload = {
         name,
         email,
-        password
+        password,
+        about,
+        profileUrl
       }
       const secret = process.env.VERIFICATION_TOKEN_SECRET
       const options = {
