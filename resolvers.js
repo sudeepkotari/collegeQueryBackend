@@ -8,20 +8,51 @@ const resolvers = {
             return await User.find();
         },
 
-        getAllPosts: async () => {
-            return await Post.find( {}, { answers: { $slice: -1 } })
+        getUser: async (parent, { id }, context, info) => {
+            return await User.findById(id);
+        },
+
+        getAllPosts: async (parent, { page, size }, context, info) => {
+            if(!page){
+                page = 1;
+            }
+            if(!size){
+                size = 20;
+            }
+            const limit = parseInt(size);
+            const skip = (page - 1) * size;
+
+            return await Post.find( {}, { answers: { $slice: -1 } }, { limit: limit,skip: skip } )
             .sort({updatedAt: -1})
-            .populate('user','name')
+            .populate('user')
             .populate('answers.user')
         },
 
         getPost: async (parent, { id }, context, info) => {
             return await Post.findById(id)
+            .populate('user')
+            .populate('answers.user')
         },
 
-        getQuestions: async () => {
-            return await Post.find( {}, { question:1 })
-            .populate('user','name');
+        getQuestions: async ( parent, { page, size }, context, info ) => {
+            if(!page){
+                page = 1;
+            }
+            if(!size){
+                size = 20;
+            }
+            
+            const limit = parseInt(size);
+            const skip = (page - 1) * size;
+
+            return await Post.find( {}, { question:1 }, { limit: limit,skip: skip })
+            .populate('user');
+        },
+
+        getPostsByUser: async ( parent, { id }, context, info ) => {
+             return await Post.find( { user : { $in: id }})
+             .populate('user')
+             .populate('answers.user');
         },
 
         getSearchResult: async (parent, { question }, context, info) => {
@@ -45,6 +76,10 @@ const resolvers = {
         }
     },
     Mutation:{
+
+        updateUser: async(parent, { id, user }, context, info) => {
+            return await User.findByIdAndUpdate(id, user, { new: true })
+        },
         createPost: async (parent, args, context, info) => {
             const { user, question, answers } = args.post;
 
@@ -53,7 +88,7 @@ const resolvers = {
         },
 
         deletePost: async (parent, { id }, context, info) => {
-            await Post.findByIdAndDelete(id);
+            await Post.findByIdAndDelete(id)
             return 'ok, post deleted'
         },
 

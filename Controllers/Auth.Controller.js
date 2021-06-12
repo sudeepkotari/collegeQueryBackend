@@ -21,6 +21,7 @@ module.exports = {
         throw createError.Conflict(`${result.email} is already been registered`)
 
       const emailVerificationToken = await signEmailVerificationToken(result.name, result.email, result.password);
+      console.log(emailVerificationToken)
       const message = await sendMail(result.email, emailVerificationToken)
       
       res.send({message})

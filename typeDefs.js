@@ -4,6 +4,8 @@ const typeDefs = gql`
 type User {
     id:ID
     name:String
+    about:String
+    profileUrl:String
 }
 
 type Answers {
@@ -27,22 +29,36 @@ type Question {
     question:String
 }
 
+type searchResult {
+    _id:ID
+    question: String
+}
+
 input postInput {
     user:ID
     question:String
     answers:[answersInput]
 }
 
+input userInput {
+    about: String
+    name:String
+    profileUrl: String
+}
+
 
 type Query {
-    getAllPosts: [Post]
-    getPost(id: ID):Post
-    getUsers:[User]
-    getQuestions:[Question]
-    getSearchResult(question: String):[Post]
+    getAllPosts(page: Int, size: Int): [Post]
+    getPost(id: ID): Post
+    getUsers: [User]
+    getUser(id: ID):User
+    getQuestions(page: Int, size: Int): [Question]
+    getSearchResult(question: String): [searchResult]
+    getPostsByUser(id: ID): [Post]
 }
 
 type Mutation {
+    updateUser(id: ID, user: userInput): User
     createPost(post:postInput):Post
     deletePost(id: ID):String
     updatePost(id: ID, post: postInput):Post
