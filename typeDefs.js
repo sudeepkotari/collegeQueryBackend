@@ -11,6 +11,7 @@ type User {
 type Answers {
     user:User
     answer:String
+    createdAt:String
 }
 
 input answersInput {
@@ -23,10 +24,12 @@ type Post {
     user:User
     question:String
     answers: [Answers]
+    createdAt:String
 }
 type Question {
     user:User
     question:String
+    createdAt:String
 }
 
 type searchResult {

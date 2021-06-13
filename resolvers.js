@@ -45,7 +45,7 @@ const resolvers = {
             const limit = parseInt(size);
             const skip = (page - 1) * size;
 
-            return await Post.find( {}, { question:1 }, { limit: limit,skip: skip })
+            return await Post.find( {}, { question: 1, createdAt: 1 }, { limit: limit,skip: skip })
             .populate('user');
         },
 
