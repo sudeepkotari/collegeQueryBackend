@@ -53,7 +53,11 @@ module.exports = {
       mailTransporter.sendMail(mailDetails, function (err, data) {
         if (err) {
           console.log(err.message);
-          reject(err);
+          reject(
+            createError.InternalServerError(
+              "gmail service not working try after some time"
+            )
+          );
           return;
         } else {
           const message =
