@@ -6,6 +6,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       let mailTransporter = nodemailer.createTransport({
         service: "gmail",
+        secure: true,
         auth: {
           user: process.env.MAIL_ID,
           pass: process.env.MAIL_PWD,
