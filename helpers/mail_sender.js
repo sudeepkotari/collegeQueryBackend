@@ -1,27 +1,23 @@
-const nodemailer = require('nodemailer');
-const createError = require('http-errors');
-
-
+const nodemailer = require("nodemailer");
+const createError = require("http-errors");
 
 module.exports = {
-    sendMail: (user,token)=>{
-        return new Promise((resolve,reject) => {
+  sendMail: (user, token) => {
+    return new Promise((resolve, reject) => {
+      let mailTransporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: process.env.MAIL_ID,
+          pass: process.env.MAIL_PWD,
+        },
+      });
 
-            let mailTransporter = nodemailer.createTransport({
-                service: 'gmail',
-                auth: {
-                    user: process.env.MAIL_ID,
-                    pass: process.env.MAIL_PWD
-                }
-            });
-              
-            let mailDetails = {
-                from: 'college-query<viralitt@gmail.com>',
-                to: user,
-                subject: 'Hello from College-Query',
-                text: 'Hello from College-Query',
-                html: 
-                `<!DOCTYPEhtml>
+      let mailDetails = {
+        from: "college-query<viralitt@gmail.com>",
+        to: user,
+        subject: "Hello from College-Query",
+        text: "Hello from College-Query",
+        html: `<!DOCTYPEhtml>
                 <htm>
                         <head>
                         <style type="text/css">
@@ -48,19 +44,20 @@ module.exports = {
                         </a>
                         </div>
                         </body>
-                        </html>`
-            };
-              
-            mailTransporter.sendMail(mailDetails, function(err, data) {
-                if(err) {
-                    console.log(err.message)
-                    reject(createError.InternalServerError())
-                    return
-                } else {
-                    const message = 'A verification link has been sent to your email account'
-                    resolve(message)
-                }
-            });
-        })
-    }
-}
+                        </html>`,
+      };
+
+      mailTransporter.sendMail(mailDetails, function (err, data) {
+        if (err) {
+          console.log(err.message);
+          reject(err);
+          return;
+        } else {
+          const message =
+            "A verification link has been sent to your email account";
+          resolve(message);
+        }
+      });
+    });
+  },
+};

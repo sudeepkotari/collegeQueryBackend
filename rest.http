@@ -25,7 +25,7 @@ Content-Type: application/json
 
 {
   "name":"kotari",
-  "email": "kotarisudeep@gmail.com",
+  "email": "sudeep@gloify.com",
   "password": "12345679",
   "about": " ",
   "profileUrl": " "
